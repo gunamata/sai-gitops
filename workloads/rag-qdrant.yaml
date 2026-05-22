@@ -1,0 +1,36 @@
+{
+  "apiVersion": "fleet.cattle.io/v1alpha1",
+  "kind": "HelmOp",
+  "metadata": {
+    "name": "rag-qdrant",
+    "namespace": "fleet-local"
+  },
+  "spec": {
+    "helm": {
+      "releaseName": "rag-qdrant",
+      "repo": "oci://registry.suse.com/ai/charts/qdrant",
+      "values": {
+        "global": {
+          "imagePullSecrets": [
+            {
+              "name": "suse-ai-pull-registry-suse-com"
+            }
+          ]
+        },
+        "imagePullSecrets": [
+          {
+            "name": "suse-ai-pull-registry-suse-com"
+          }
+        ]
+      },
+      "version": "1.17.0"
+    },
+    "helmSecretName": "suse-ai-registry-auth",
+    "namespace": "rag-system",
+    "targets": [
+      {
+        "clusterName": "local"
+      }
+    ]
+  }
+}

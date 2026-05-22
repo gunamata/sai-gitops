@@ -1,0 +1,36 @@
+{
+  "apiVersion": "fleet.cattle.io/v1alpha1",
+  "kind": "HelmOp",
+  "metadata": {
+    "name": "rag-litellm",
+    "namespace": "fleet-local"
+  },
+  "spec": {
+    "helm": {
+      "releaseName": "rag-litellm",
+      "repo": "oci://registry.suse.com/ai/charts/litellm",
+      "values": {
+        "global": {
+          "imagePullSecrets": [
+            {
+              "name": "suse-ai-pull-combined"
+            }
+          ]
+        },
+        "imagePullSecrets": [
+          {
+            "name": "suse-ai-pull-combined"
+          }
+        ]
+      },
+      "version": "1.81.13"
+    },
+    "helmSecretName": "suse-ai-registry-auth",
+    "namespace": "rag-system",
+    "targets": [
+      {
+        "clusterName": "local"
+      }
+    ]
+  }
+}

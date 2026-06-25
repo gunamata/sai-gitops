@@ -8,9 +8,9 @@
   "spec": {
     "defaultNamespace": "qdrant-system",
     "helm": {
-      "version": "1.16.3",
+      "version": "1.17.0",
       "repo": "oci://registry.suse.com/ai/charts/qdrant",
-      "releaseName": "qdrant",
+      "releaseName": "qdrant-c-785f4",
       "values": {
         "additionalAnnotations": {},
         "additionalLabels": {},
@@ -78,7 +78,7 @@
           "pullPolicy": "IfNotPresent",
           "registry": "registry.suse.com",
           "repository": "ai/containers/qdrant",
-          "tag": "v1.16.3",
+          "tag": "v1.17.0",
           "useUnprivilegedImage": false
         },
         "imagePullSecrets": [

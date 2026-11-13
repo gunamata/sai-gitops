@@ -1,0 +1,106 @@
+{
+  "apiVersion": "fleet.cattle.io/v1alpha1",
+  "kind": "HelmOp",
+  "metadata": {
+    "labels": {
+      "ai-factory.suse.com/workload-uid": "7d6aecf6-1b68-41d5-93af-6745fb391d2f"
+    },
+    "name": "simple-chatbot-with-rag-local-open-webui-mcpo",
+    "namespace": "fleet-local"
+  },
+  "spec": {
+    "defaultNamespace": "simple-chatbot-with-rag-umyyzuk",
+    "forceSyncGeneration": 0,
+    "helm": {
+      "disablePreProcess": true,
+      "releaseName": "open-webui-mcpo",
+      "repo": "oci://dp.apps.rancher.io/charts/open-webui-mcpo",
+      "takeOwnership": true,
+      "values": {
+        "affinity": {},
+        "autoscaling": {
+          "enabled": false,
+          "maxReplicas": 100,
+          "minReplicas": 1,
+          "targetCPUUtilizationPercentage": 80
+        },
+        "config": {
+          "mcpServers": {
+            "memory": {
+              "args": [
+                "-y",
+                "@modelcontextprotocol/server-memory"
+              ],
+              "command": "npx"
+            }
+          }
+        },
+        "env": {},
+        "envSecrets": {},
+        "fullnameOverride": "open-webui-mcpo",
+        "global": {
+          "imagePullSecrets": [
+            {
+              "name": "suse-ai-pull-combined"
+            }
+          ],
+          "imageRegistry": ""
+        },
+        "image": {
+          "pullPolicy": "IfNotPresent",
+          "registry": "dp.apps.rancher.io",
+          "repository": "containers/open-webui-mcpo",
+          "tag": "0.0.17-2.18"
+        },
+        "imagePullSecrets": [
+          {
+            "name": "suse-ai-pull-combined"
+          }
+        ],
+        "ingress": {
+          "annotations": {},
+          "className": "",
+          "enabled": false,
+          "hosts": [
+            "open-webui-mcpo.local"
+          ],
+          "path": "/",
+          "pathType": "Prefix",
+          "tls": []
+        },
+        "nameOverride": "",
+        "nodeSelector": {},
+        "podAnnotations": {},
+        "podSecurityContext": {},
+        "replicaCount": 1,
+        "resources": {},
+        "secretEnv": {
+          "data": {}
+        },
+        "securityContext": {},
+        "service": {
+          "port": 8000,
+          "targetPort": 8000,
+          "type": "ClusterIP"
+        },
+        "serviceAccount": {
+          "annotations": {},
+          "create": true,
+          "name": ""
+        },
+        "tolerations": []
+      },
+      "version": "1.0.2"
+    },
+    "helmSecretName": "application-collection-auth",
+    "labels": {
+      "ai-factory.suse.com/render-digest": "0afac8987b8b3c78ea9194ca98059defec31bcacb015b481b5cf85f4d1cf8b3",
+      "ai-factory.suse.com/workload-uid": "7d6aecf6-1b68-41d5-93af-6745fb391d2f"
+    },
+    "targets": [
+      {
+        "clusterName": "local"
+      }
+    ]
+  }
+}
